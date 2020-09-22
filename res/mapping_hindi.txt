@@ -1,0 +1,111 @@
+;  Toung Positions
+; -----------------
+;  kaṇṭhya      Guttural/Velar
+;  tālavya      Palatal
+;  mūrdhanya    Retroflex
+;  dantya       Dental
+;  oṣṭhya       Labial
+;
+;  Goup members
+; -----------------
+;  aghoṣa       Voiceless
+;  saghoṣa      Voiced
+;  alpaprāṇa    Unaspirated
+;  mahāprāṇa    Aspirated
+;  anunāsika    Nasal
+;  sparśa       Plosive
+;  antastha     Approximant
+;  saṃghaṣhrī   Fricative
+
+क cnt sparśa aghoṣa alpaprāṇa kaṇṭhya
+ख cnt sparśa aghoṣa mahāprāṇa kaṇṭhya
+ग cnt sparśa saghoṣa alpaprāṇa kaṇṭhya
+घ cnt sparśa saghoṣa mahāprāṇa kaṇṭhya
+ङ cnt anunāsika saghoṣa alpaprāṇa kaṇṭhya
+ह cnt saṃghaṣhrī saghoṣa mahāprāṇa kaṇṭhya
+
+च cnt sparśa aghoṣa alpaprāṇa tālavya
+छ cnt sparśa aghoṣa mahāprāṇa tālavya
+ज cnt sparśa saghoṣa alpaprāṇa tālavya
+झ cnt sparśa saghoṣa mahāprāṇa tālavya
+ञ cnt anunāsika saghoṣa alpaprāṇa tālavya
+य cnt antastha saghoṣa alpaprāṇa tālavya
+श cnt saṃghaṣhrī aghoṣa mahāprāṇa tālavya
+
+ट cnt sparśa aghoṣa alpaprāṇa mūrdhanya
+ठ cnt sparśa aghoṣa mahāprāṇa mūrdhanya
+ड cnt sparśa saghoṣa alpaprāṇa mūrdhanya
+ढ cnt sparśa saghoṣa mahāprāṇa mūrdhanya
+ण cnt anunāsika saghoṣa alpaprāṇa mūrdhanya
+र cnt antastha saghoṣa alpaprāṇa mūrdhanya
+ष cnt saṃghaṣhrī aghoṣa mahāprāṇa mūrdhanya
+
+त cnt sparśa aghoṣa alpaprāṇa dantya
+थ cnt sparśa aghoṣa mahāprāṇa dantya
+द cnt sparśa saghoṣa alpaprāṇa dantya
+ध cnt sparśa saghoṣa mahāprāṇa dantya
+न cnt anunāsika saghoṣa alpaprāṇa dantya
+ल cnt antastha saghoṣa alpaprāṇa dantya
+स cnt saṃghaṣhrī aghoṣa mahāprāṇa dantya
+
+प cnt sparśa aghoṣa alpaprāṇa oṣṭhya
+फ cnt sparśa aghoṣa mahāprāṇa oṣṭhya
+ब cnt sparśa saghoṣa alpaprāṇa oṣṭhya
+भ cnt sparśa saghoṣa mahāprāṇa oṣṭhya
+म cnt anunāsika saghoṣa alpaprāṇa oṣṭhya
+व cnt antastha saghoṣa alpaprāṇa oṣṭhya dantya
+
+; अ vwl kaṇṭhya saghoṣa alpaprāṇa oṣṭhya
+अ vwl alpaprāṇa kaṇṭhya
+इ vwl alpaprāṇa tālavya
+उ vwl alpaprāṇa oṣṭhya
+ऋ vwl alpaprāṇa mūrdhanya
+; ऌ vwl alpaprāṇa mūrdhanya
+ए vwl alpaprāṇa kaṇṭhya tālavya
+ओ vwl alpaprāṇa kaṇṭhya oṣṭhya
+ॅ vwl alpaprāṇa kaṇṭhya tālavya near-open
+
+आ vwl mahāprāṇa kaṇṭhya
+ई vwl mahāprāṇa tālavya
+ऊ vwl mahāprāṇa oṣṭhya
+ॠ vwl mahāprāṇa mūrdhanya
+; ॡ vwl mahāprāṇa mūrdhanya
+ऐ vwl mahāprāṇa kaṇṭhya tālavya
+औ vwl mahāprāṇa kaṇṭhya oṣṭhya
+ऑ vwl mahāprāṇa kaṇṭhya oṣṭhya open-back
+ॉ vwl mahāprāṇa kaṇṭhya oṣṭhya open-back
+
+ि vwl alpaprāṇa tālavya
+ु vwl alpaprāṇa oṣṭhya
+ृ vwl alpaprāṇa mūrdhanya
+; ऌ vwl alpaprāṇa mūrdhanya
+े vwl alpaprāṇa kaṇṭhya tālavya
+ो vwl alpaprāṇa kaṇṭhya oṣṭhya
+
+ा vwl mahāprāṇa kaṇṭhya
+ी vwl mahāprāṇa tālavya
+ू vwl mahāprāṇa oṣṭhya
+ॄ vwl mahāprāṇa mūrdhanya
+; ॡ vwl mahāprāṇa mūrdhanya
+ै vwl mahāprāṇa kaṇṭhya tālavya
+ौ vwl mahāprāṇa kaṇṭhya oṣṭhya
+
+ः vwl kaṇṭhya visarga
+ं vwl anusvar anunāsika
+ँ vwl anunāsika mahāprāṇa
+
+; persian sounds
+क़ cnt sparśa aghoṣa alpaprāṇa kaṇṭhya uvular
+ख़ cnt saṃghaṣhrī aghoṣa mahāprāṇa kaṇṭhya velar
+ग़ cnt saṃghaṣhrī saghoṣa alpaprāṇa kaṇṭhya velar
+ज़ cnt saṃghaṣhrī saghoṣa alpaprāṇa tālavya alveolar
+झ़ cnt saṃghaṣhrī saghoṣa mahāprāṇa tālavya alveolar
+फ़ cnt saṃghaṣhrī aghoṣa dantya oṣṭhya
+ड़ cnt saghoṣa alpaprāṇa mūrdhanya flap
+ढ़ cnt saghoṣa mahāprāṇa mūrdhanya flap
+
+़ nukta
+् halant
+
+^ beg
+$ end
