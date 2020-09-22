@@ -4,8 +4,8 @@ A novel method to compare the phonetic similarity between words based on phoneti
 
 - [Phonetic Word Similarity](#phonetic-word-similarity)
   - [Preparing dataset and environment](#preparing-dataset-and-environment)
-    - [Download datasets](#download-datasets)
-    - [Preparing dataset](#preparing-dataset)
+    - [Downloading](#downloading)
+    - [Preparing](#preparing)
   - [Algorithm results](#algorithm-results)
   - [Train embedding](#train-embedding)
   - [Embedding results](#embedding-results)
@@ -16,7 +16,7 @@ A novel method to compare the phonetic similarity between words based on phoneti
 
 ## Preparing dataset and environment
 
-### Download datasets
+### Downloading
 
 Download [The CMU Pronouncing Dictionary](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) in the data directory.
 
@@ -30,12 +30,18 @@ Download SOTA model vocab from [NLP for Hindi git repo](https://github.com/goru0
 wget -O data/hindi_lm_large.vocab https://drive.google.com/uc?export=download&id=1P6r8UBcegvVmr1kBDjqcYppmt_WgnbNt
 ```
 
-### Preparing dataset
+### Preparing
 
 Add missing words to cmu dictionary
 
 ```
 cat data/cmudict-0.7b res/cmudict_missing_words >> data/cmudict-0.7b-with-vitz-nonce
+```
+
+Install all the dependencies.
+
+```
+pip install -r requirements.txt
 ```
 
 Generate hindi dictionary from LM vocab
