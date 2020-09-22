@@ -39,7 +39,7 @@ class Similarity:
         score = len(common) / len(total)
         if vowel_weight:
             same = ph1[-1] == ph2[-1] and 'vwl' in self.phonetic.features(ph1[-1])
-            score = math.sqrt(score) if same else score**2
+            score = score**0.5 if same else score**2
         return score
 
     def get_phone_matrix(self, word1, word2, bigram, weight):
@@ -98,6 +98,7 @@ class Similarity:
         score = a[-1, -1] / max(n1, n2) if bigram else (a[-1, -1] - 2) / (max(n1, n2) - 2)
         if rhyme:
             weight = max(0, d[-1, -1] - 1) / (max(n1, n2) - 1)
+            weight *= weight
             # print(score, weight)
             score = score * (1 - weight) + weight
             # print(score)

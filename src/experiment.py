@@ -12,6 +12,7 @@ class Experiment:
         dictionary = os.path.join(self.filepath, '..', 'data', dictionary)
         self.wsim = Similarity(mapping, dictionary, encoding=encoding)
         self.words = words
+        self.pssvec = pd.read_csv(os.path.join(self.filepath, '..', 'res', 'PSSVec_results.csv'))
 
 
     def get_dataset(self):
@@ -36,10 +37,16 @@ class Experiment:
         df['bigram p=2.5 VW'] = df.apply(
             lambda row: self.wsim.word_similarity(
                 row.word.upper(), word.upper(), bigram=True, vowel=True, penalty=2.5), axis=1)
+        df['bigram p=2.5 RH'] = df.apply(
+            lambda row: self.wsim.word_similarity(
+                row.word.upper(), word.upper(), bigram=True, vowel=False, penalty=2.5, rhyme=True), axis=1)
+        df['bigram p=2.5 VW RH'] = df.apply(
+            lambda row: self.wsim.word_similarity(
+                row.word.upper(), word.upper(), bigram=True, vowel=True, penalty=2.5, rhyme=True), axis=1)
         return df
 
 
-    def penalty_analysis(self, words, start, end, divisions, bigram=True, vowel=True):
+    def penalty_analysis(self, words, start, end, divisions, bigram=True, vowel=True, rhyme=False):
         columns, indices = {}, np.linspace(start, end, num=divisions)
         avg = np.zeros(len(indices))
         for word in words:
@@ -49,7 +56,7 @@ class Experiment:
                 obtained = df['obtained'].to_numpy()
                 actual = np.array([
                     self.wsim.word_similarity(
-                        word.upper(), other.upper(), bigram=bigram, vowel=vowel, penalty=penalty
+                        word.upper(), other.upper(), bigram=bigram, vowel=vowel, rhyme=rhyme, penalty=penalty
                     ) for other in df['word'].tolist()
                 ])
                 values.append(np.corrcoef(obtained, actual)[0, 1])
@@ -57,3 +64,18 @@ class Experiment:
             avg += np.array(values)
         columns['avg'] = avg / len(words)
         return pd.DataFrame(columns, index=indices)
+
+    def similarity_scores(self, methods, words):
+        df, columns = self.dataset, {}
+        for method in methods:
+            scores = []
+            if method == 'PSSVec':
+                ps = self.pssvec
+                scores = [ps.loc[ps['word'] == w, 'score'].tolist()[0] for w in words]
+            else:
+                for word in words:
+                    obtained = df[df['actual'] == word]['obtained'].to_numpy()
+                    vw_predicted = df[df['actual'] == word][method].to_numpy()
+                    scores.append(np.corrcoef(obtained, vw_predicted)[0, 1])
+            columns[method] = scores
+        return pd.DataFrame(columns, index=words)

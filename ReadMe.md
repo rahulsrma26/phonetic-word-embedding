@@ -62,8 +62,11 @@ Comparision between unigram, bigram and bigram with penalty.
 How we obtained the penalty of 2.5.
 ![02](docs/img/02_penalty.png)
 
-Comparision between Vitz method, and the effect of vowel weight.
-![03](docs/img/03_vowel_weight.png)
+Comparision between [Vitz and Winkler (1973)](https://www.researchgate.net/publication/232418589_Predicting_the_Judged_Similarity_of_Sound_of_English_words), [Parrish's Embeddings (2017)](https://aaai.org/ocs/index.php/AIIDE/AIIDE17/paper/view/15879), and our methods (with and without vowel weights).
+
+![03](docs/img/03_compare.png)
+
+^ The Parrish's Embeddings (PSSVec) results are generated from the author's provided git [code](https://github.com/aparrish/phonetic-similarity-vectors) using `numpy.seed(0)`.
 
 ---
 
