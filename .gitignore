@@ -11,3 +11,5 @@
 **/*.so
 data/
 **/nohup.out
+**/*_wrapper.cpp
+**/simvecs*

@@ -1,0 +1,4 @@
+six
+cython
+numpy
+tensorflow==2.2.0
