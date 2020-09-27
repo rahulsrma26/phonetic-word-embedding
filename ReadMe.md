@@ -72,7 +72,7 @@ Comparision between [Vitz and Winkler (1973)](https://www.researchgate.net/publi
 
 ## Train embedding
 
-* [Hindi Embedding](embedding_hindi/ReadMe.md)
+* [Hindi Embedding](embedding_hindi/)
 
 ---
 
