@@ -127,7 +127,9 @@ def _main(args):
             result = sim.word_similarity(words[0].upper(), words[1].upper(), bigram=args.bigram, vowel=args.vowel, penalty=args.penalty)
             print('similarity', result)
         elif len(words) == 1:
+            start_time = time()
             result = sim.top_similar(words[0].upper(), bigram=args.bigram, vowel=args.vowel, penalty=args.penalty)
+            print('time taken', time() - start_time)
             print('similarity', result[:20])
         else:
             print(__doc__)

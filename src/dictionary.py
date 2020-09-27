@@ -27,6 +27,9 @@ class Dictionary:
     def phones(self, word):
         return self.dictionary[word]
 
+    def __contains__(self, word):
+        return word in self.dictionary
+
     # def __iter__(self):
     #     return iter(self.dictionary)
 

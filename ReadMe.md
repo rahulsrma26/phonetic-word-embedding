@@ -41,7 +41,7 @@ cat data/cmudict-0.7b res/cmudict_missing_words >> data/cmudict-0.7b-with-vitz-n
 Install all the dependencies.
 
 ```
-pip install -r requirements.txt
+pip install -r src/requirements.txt
 ```
 
 Generate hindi dictionary from LM vocab
@@ -71,6 +71,8 @@ Comparision between [Vitz and Winkler (1973)](https://www.researchgate.net/publi
 ---
 
 ## Train embedding
+
+* [Hindi Embedding](embedding_hindi/ReadMe.md)
 
 ---
 
