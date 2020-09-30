@@ -33,12 +33,20 @@ This will generate the `simvecs` file. For running it manually see options by ru
 python train.py -h
 ```
 
-<!-- You can also download the pre-trained vector embedding. -->
+You can also download the pre-trained vector embedding.
 
-<!-- ```
-wget -O simvecs_hindi https://drive.google.com/uc?export=download&id=1apSuUlzlqiNV5iAIyRwiBcPBn7pIMAly
-``` -->
+```
+wget -O simvecs https://drive.google.com/uc?export=download&id=16W-2b4vhd4HEWbr4IV2n190BeXKxSval
+```
 
-<!-- ## Results
+## Results
 
-To see the embedding results check [results.ipynb](results.ipynb) -->
+To see the embedding results check [result.ipynb](result.ipynb)
+
+To generate the embedding scores for the dataset [embedding_score.csv](../res/embedding_score.csv) run
+
+```
+python dataset.py
+```
+
+This file is used to generate embedding charts in [results_method.ipynb](../src/results_method.ipynb).

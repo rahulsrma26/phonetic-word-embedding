@@ -79,7 +79,8 @@ def _main(params):
         params) if params.load_model == '' else tf.keras.models.load_model(
             params.load_model)
 
-    model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
+    opt = tf.keras.optimizers.Adam(learning_rate=params.learning_rate)
+    model.compile(optimizer=opt, loss='mean_squared_error') # loss is MSE
 
     if os.path.isdir(params.checkpoint_path):
         model.load_weights(params.checkpoint_path)
@@ -91,7 +92,9 @@ def _main(params):
     # model.summary()
     for i in range(params.num_of_epochs):
         start = time()
-        model.fit(dataset, callbacks=[cp_callback])
+        result = model.fit(dataset, callbacks=[cp_callback])
+        with open('history.csv', 'a+') as f:
+            f.write(f'{result.history["loss"][0]}\n')
         print(f'Epoch: {i}, time taken: {time() - start}')
         # model.embedding = tf.nn.l2_normalize(model.embedding, axis=-1)
         embedding = model.embedding.embedding.numpy()
@@ -196,6 +199,12 @@ def _args():
                         default=100000,
                         metavar='',
                         help='number of pairs to check after each epochs')
+    parser.add_argument('-lr',
+                        '--learning_rate',
+                        type=float,
+                        default=0.001,
+                        metavar='',
+                        help='learning rate for Adam optimizer')
     return parser.parse_args()
 
 

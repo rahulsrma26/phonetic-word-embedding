@@ -36,9 +36,9 @@ python train.py -h
 You can also download the pre-trained vector embedding.
 
 ```
-wget -O simvecs_hindi https://drive.google.com/uc?export=download&id=1apSuUlzlqiNV5iAIyRwiBcPBn7pIMAly
+wget -O simvecs_hindi https://drive.google.com/uc?export=download&id=1nrcRiGpEW1KPIDkLF5c5LuHidhPNMu6b
 ```
 
 ## Results
 
-To see the embedding results check [results.ipynb](results.ipynb)
+To see the embedding results check [result.ipynb](result.ipynb)

@@ -13,6 +13,7 @@ class Experiment:
         self.wsim = Similarity(mapping, dictionary, encoding=encoding)
         self.words = words
         self.pssvec = pd.read_csv(os.path.join(self.filepath, '..', 'res', 'PSSVec_results.csv'))
+        self.embed = pd.read_csv(os.path.join(self.filepath, '..', 'res', 'embedding_score.csv'))
 
 
     def get_dataset(self):
@@ -71,6 +72,9 @@ class Experiment:
             scores = []
             if method == 'PSSVec':
                 ps = self.pssvec
+                scores = [ps.loc[ps['word'] == w, 'score'].tolist()[0] for w in words]
+            elif method == 'Ours':
+                ps = self.embed
                 scores = [ps.loc[ps['word'] == w, 'score'].tolist()[0] for w in words]
             else:
                 for word in words:

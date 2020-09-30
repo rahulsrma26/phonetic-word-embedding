@@ -292,26 +292,30 @@ float Dictionary::score(int w1, int w2, int flags,
     return score_unigram(w1, w2, flags, nonDiagonalPenalty);
 }
 
-const std::vector<int> dataset = {
-    92239,  106825, 14871,  26831,  128685, 52332,  70035,  34429,  111397,
-    12033,  88873,  49269,  26144,  43173,  12361,  91563,  114005, 92523,
-    113310, 93846,  49401,  133852, 133853, 92237,  133854, 111008, 110591,
-    127833, 103577, 63994,  37558,  118189, 118276, 33874,  118652, 121536,
-    77476,  58064,  41187,  20796,  16762,  70539,  112328, 120747, 120107,
-    79105,  60812,  105141, 108262, 109860, 92006,  55044,  131504, 109872,
-    121539, 70753,  97089,  97405,  133858, 15812,  26092,  130766, 76996,
-    23037,  51871,  16795,  28113,  130408, 16241,  119331, 130885, 129168,
-    131044, 133855, 133856, 128217, 116742, 133857};
+#define FAST_TRAIN
+
+#ifdef FAST_TRAIN
+const std::vector<std::vector<int>> dataset = {
+    {110591, 127833, 103577, 63994, 37558, 118189, 118276, 33874, 118652, 121536, 77476, 58064, 41187, 20796, 16762, 70539, 112328, 120747, 120107, 79105, 60812, 105141, 108262, 109860, 92006, 55044},
+    { 92239, 106825, 14871, 26831, 128685, 52332, 70035, 34429, 111397, 12033, 88873, 49269, 26144, 43173, 12361, 91563, 114005, 92523, 113310, 93846, 49401, 133852, 133853, 92237, 133854, 111008},
+    {131504, 109872, 121539, 70753, 97089, 97405, 133858, 15812, 26092, 130766, 76996, 23037, 51871, 16795, 28113, 130408, 16241, 119331, 130885, 129168, 131044, 133855, 133856, 128217, 116742, 133857},
+    { 99481, 47152, 6278, 30967, 54313, 40783, 116705, 36127, 9621, 101345, 68786, 76475, 124263, 88150, 67835, 103748, 100004, 59149, 37300, 100477, 66845, 101050, 99472, 70723, 97575, 133859}
+};
+#endif
 
 std::pair<std::pair<std::vector<int>, std::vector<int>>, std::vector<float>>
 Dictionary::randomScores(int n, int flags, float nonDiagonalPenalty) const {
     std::vector<int> i1(n), i2(n);
     std::vector<float> s(n);
-    i1[0] = dataset[rand() % dataset.size()];
-    i2[0] = dataset[rand() % dataset.size()];
+#ifdef FAST_TRAIN
+    const auto& ds = dataset[rand() % 4];
+    i1[0] = ds[0];
+    i2[0] = ds[1 + (rand() % (ds.size() - 1))];
     s[0] = score(i1[0], i2[0], flags, nonDiagonalPenalty);
-
     for (int i = 1; i < n; i++) {
+#else
+    for (int i = 0; i < n; i++) {
+#endif
         i1[i] = rand() % m_words.size();
         i2[i] = rand() % m_words.size();
         s[i] = score(i1[i], i2[i], flags, nonDiagonalPenalty);
@@ -342,7 +346,7 @@ Dictionary::topSimilar(const std::string &word, int k, int flags,
 
 int main(){
     using namespace wsim;
-    Dictionary d("../phonetic-similarity-vectors/cmudict-0.7b-with-vitz-nonce");
+    Dictionary d("../data/cmudict-0.7b-with-vitz-nonce");
     for(auto res: d.topSimilar("SIT", 10, INSERT_BEG_END | BIGRAM | VOWEL_BUFF, 0.4)){
         std::cout << res.first << " | " << res.second << '\n';
     }

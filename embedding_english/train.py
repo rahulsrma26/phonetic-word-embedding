@@ -78,7 +78,8 @@ def _main(params):
         params) if params.load_model == '' else tf.keras.models.load_model(
             params.load_model)
 
-    model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
+    opt = tf.keras.optimizers.Adam(learning_rate=params.learning_rate)
+    model.compile(optimizer=opt, loss='mean_squared_error') # loss is MSE
 
     if os.path.isdir(params.checkpoint_path):
         model.load_weights(params.checkpoint_path)
@@ -90,7 +91,9 @@ def _main(params):
 
     for i in range(params.num_of_epochs):
         start = time()
-        model.fit(dataset, callbacks=[cp_callback])
+        result = model.fit(dataset, callbacks=[cp_callback])
+        with open('history.csv', 'a+') as f:
+            f.write(f'{result.history["loss"][0]}\n')
         print(f'Epoch: {i}, time taken: {time() - start}')
         # model.embedding = tf.nn.l2_normalize(model.embedding, axis=-1)
         embedding = model.embedding.numpy()
@@ -101,19 +104,15 @@ def _main(params):
 
 
 def check(dict, embd, n):
-    actual, predicted = [], []
-    for _ in range(n):
-        i1 = randrange(0, n)
-        i2 = randrange(0, n)
-        actual.append(dict.score(i1, i2, D_FLAGS, D_PEN))
-        predicted.append(
-            np.dot(embd[i1], embd[i2]) / norm(embd[i1]) * norm(embd[i2]))
-
-    actual = np.array(actual)
-    predicted = np.array(predicted)
+    # actual, predicted = [], []
+    (i1, i2), actual = dict.random_scores(n, D_FLAGS, D_PEN)
+    v1, v2 = embd[i1], embd[i2]
+    n1, n2 = norm(v1, axis=1), norm(v2, axis=1)
+    predicted = np.sum(v1 * v2, axis=1) / (n1 * n2)
     print(f'{n} MSE', np.square(actual - predicted).mean())
     a = np.abs(actual - predicted)
     print(f'{n} Diff avg: {np.mean(a)}, minmax: {np.min(a)} - {np.max(a)}')
+    print(f'{n} Embedding Norms min: {min(np.min(n1), np.min(n2))} max: {max(np.max(n1), np.max(n2))}')
 
 
 def export(dictionary, embedding, path):
@@ -198,6 +197,12 @@ def _args():
                         default=100000,
                         metavar='',
                         help='number of pairs to check after each epochs')
+    parser.add_argument('-lr',
+                        '--learning_rate',
+                        type=float,
+                        default=0.001,
+                        metavar='',
+                        help='learning rate for Adam optimizer')
     return parser.parse_args()
 
 

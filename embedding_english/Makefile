@@ -10,8 +10,9 @@ test:
 	python test.py
 
 train:
-	python train.py ../data/cmudict-0.7b-with-vitz-nonce
+	python train.py ../data/cmudict-0.7b-with-vitz-nonce -ne 200 -nb 9999 -bs 32000 -lr 0.001
 
 reset:
 	rm -rf checkpoints/
 	rm -rf model.tf/
+	rm history.csv
