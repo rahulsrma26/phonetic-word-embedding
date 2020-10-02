@@ -81,6 +81,14 @@ Comparision between [Vitz and Winkler (1973)](https://www.researchgate.net/publi
 
 ![Embeddings](docs/img/04_embedding.png)
 
+TSNE Plot for some English words
+
+![TSNE_ENGLISH](docs/img/05_tsne_english.png)
+
+TSNE Plot for some Hindi words
+
+![TSNE_ENGLISH](docs/img/06_tsne_hindi.png)
+
 ---
 
 ## License
