@@ -2,7 +2,7 @@ FROM continuumio/miniconda3
 # frolvlad/alpine-miniconda3
 
 RUN apt-get update
-RUN apt-get install build-essential
+RUN apt-get install build-essential -y
 
 RUN conda --version
 ENV CONDA_BIN='/opt/conda'

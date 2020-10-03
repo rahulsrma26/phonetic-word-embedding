@@ -4,7 +4,10 @@ build:
 	docker build -t phonetics:latest .
 
 develop:
-	docker run --gpus 1 -it --rm -v $(CDIR):/workspace phonetics:latest
+	docker run -it --rm -v $(CDIR):/workspace -w /workspace phonetics:latest /bin/bash
+
+develop_gpu:
+	docker run --gpus 1 -it --rm -v $(CDIR):/workspace -w /workspace phonetics:latest /bin/bash
 
 clean:
 	docker rmi phonetics

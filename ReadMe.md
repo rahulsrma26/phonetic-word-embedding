@@ -109,6 +109,12 @@ make develop
 This will give you a command prompt inside the docker. Current directory will be mounted at `/workspace`.
 The container will be destroyed on exit but all the files and changes done in the directly will persist.
 
+You can also start it with GPU support:
+
+```
+make develop_gpu
+```
+
 ### Removing the image.
 
 ```
