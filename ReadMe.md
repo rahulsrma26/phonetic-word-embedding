@@ -4,11 +4,10 @@ A novel method to compare the phonetic similarity between words based on phoneti
 
 - [Phonetic Word Similarity](#phonetic-word-similarity)
   - [Preparing dataset and environment](#preparing-dataset-and-environment)
-    - [Downloading](#downloading)
-    - [Preparing](#preparing)
   - [Algorithm results](#algorithm-results)
   - [Train embedding](#train-embedding)
   - [Embedding results](#embedding-results)
+  - [Docker](#docker)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
 
@@ -92,6 +91,45 @@ TSNE Plot for some Hindi words
 Pun Dataset (see [docs/puns.md](docs/puns.md))
 
 ![Density](docs/img/07_puns.png)
+
+---
+
+## Docker
+
+Docker supported for development and training.
+
+### Building docker image
+
+```
+make build
+```
+
+### Running an interactive docker container.
+
+```
+make develop
+```
+
+This will give you a command prompt inside the docker. Current directory will be mounted at `/workspace`.
+The container will be destroyed on exit but all the files and changes done in the directly will persist.
+
+You can also start it with GPU support:
+
+```
+make develop_gpu
+```
+
+### Removing the image.
+
+```
+make clean
+```
+
+Remember this will not delete the base image. To clean the base image run:
+
+```
+make clean_base
+```
 
 ---
 
