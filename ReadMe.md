@@ -89,6 +89,10 @@ TSNE Plot for some Hindi words
 
 ![TSNE_ENGLISH](docs/img/06_tsne_hindi.png)
 
+Pun Dataset (see [docs/puns.md](docs/puns.md))
+
+![Density](docs/img/07_puns.png)
+
 ---
 
 ## License
