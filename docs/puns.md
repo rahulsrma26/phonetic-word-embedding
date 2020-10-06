@@ -2,7 +2,7 @@
 
 ## Background
 
-A pun is a joke exploiting the different possible meanings of a word or the fact that there are words which sound alike but have different meanings. The first category where a joke exploiting the different possible meanings of a word is called `Homographic pun` and the second one that exploit the similar sounding words is called `Heterographic pun`.
+A pun is a joke exploiting the different possible meanings of a word or the fact that there are words that sound alike but have different meanings. The first category where a joke exploiting the different possible meanings of a word is called `Homographic pun` and the second one that exploits the similar sounding words is called `Heterographic pun`.
 
 An example of a Heterographic pun is:
 
@@ -12,7 +12,7 @@ Here the word `syncing` is similar sounding to the word `sinking`.
 
 ## Dataset
 
-We have used [SemEval-2017 Task 7 (Detection and Interpretation of English Puns)](http://alt.qcri.org/semeval2017/task7/) dataset. Which consists of three subtasks. The 3rd subtask dataset contains word pairs for 1098 hetrographics puns (data/test/subtask3-heterographic-test.gold). These are the pairs like `syncing` and `sinking` i.e. what is presesent and what it is representing. For a hetrographics pun to work these words should be similar sounding. So, we have take all the word pairs that is present in [CMU Dictionary](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and removed all the duplicate pairs. This gives us 778 word pairs present in [heterographic_pun_words.txt](../res/heterographic_pun_words.txt).
+We have used [SemEval-2017 Task 7 (Detection and Interpretation of English Puns)](http://alt.qcri.org/semeval2017/task7/) dataset. Which consists of three subtasks. The 3rd subtask dataset contains word pairs for 1098 hetrographics puns (data/test/subtask3-heterographic-test.gold). These are the pairs like `syncing` and `sinking` i.e. what is present and what it is representing. For a hetrographics pun to work these words should be similar sounding. So, we have taken all the word pairs that are present in [CMU Dictionary](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and removed all the duplicate pairs. This gives us 778 word pairs present in [heterographic_pun_words.txt](../res/heterographic_pun_words.txt).
 
 ## Results
 
@@ -26,23 +26,29 @@ Now, we can run [src/puns.ipynb](../src/puns.ipynb) to get these results.
 
 ![Density](img/07_puns.png)
 
-Our curve is tighter than PSSVec and most word pairs have same phonemes so most of them should be 1.
+Our curve is tighter than PSSVec. Most word pairs have exact same phonemes (Homophones), that is why most of them are 1 (spike in the density at 1).
+
+If we remove all the homophone pairs then we are left with 583 pairs.
+
+![Density2](img/08_puns_not_same.png)
+
+As we can see our destribution more closely resembles gaussian with tighter curver and better mean.
 
 These are some of the scores sorted by the diff (diff = Ours - PSSVec).
 
-| idx |   first |  second |    PSSVec |     Ours |      diff |
-|:----|--------:|--------:|----------:|---------:|----------:|
-| 14  |  mutter |  mother | -0.012362 | 0.899352 |  0.911714 |
-| 347 |    loin |   learn | -0.088541 | 0.811977 |  0.900518 |
-| 316 | truffle | trouble |  0.136548 | 0.962972 |  0.826425 |
-| 636 |    soul |    sell |  0.073892 | 0.764270 |  0.690379 |
-| 10  |    sole |    sell |  0.073892 | 0.760572 |  0.686680 |
-| ..  |     ... |     ... |       ... |      ... |       ... |
-| 622 |   eight |     eat |  0.719679 | 0.435228 | -0.284451 |
-| 0   |  allege |   ledge |  0.714921 | 0.417235 | -0.297686 |
-| 441 |    ache |     egg |  0.773436 | 0.458007 | -0.315429 |
-| 440 |  engels |   angle |  0.831800 | 0.498631 | -0.333169 |
-| 174 | bullion |    bull |  0.781468 | 0.412887 | -0.368581 |
+|   word1 |   word2 |    PSSVec |     Ours |      diff |
+|--------:|--------:|----------:|---------:|----------:|
+|  mutter |  mother | -0.012362 | 0.899352 |  0.911714 |
+|    loin |   learn | -0.088541 | 0.811977 |  0.900518 |
+| truffle | trouble |  0.136548 | 0.962972 |  0.826425 |
+|    soul |    sell |  0.073892 | 0.764270 |  0.690379 |
+|    sole |    sell |  0.073892 | 0.760572 |  0.686680 |
+|     ... |     ... |       ... |      ... |       ... |
+|   eight |     eat |  0.719679 | 0.435228 | -0.284451 |
+|  allege |   ledge |  0.714921 | 0.417235 | -0.297686 |
+|    ache |     egg |  0.773436 | 0.458007 | -0.315429 |
+|  engels |   angle |  0.831800 | 0.498631 | -0.333169 |
+| bullion |    bull |  0.781468 | 0.412887 | -0.368581 |
 
 Even in the worst case our embedding are different by much (at max 0.36). But PSSVec is not working good in top cases.
 

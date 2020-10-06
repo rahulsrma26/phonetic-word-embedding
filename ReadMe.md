@@ -2,7 +2,7 @@
 
 A novel method to compare the phonetic similarity between words based on phonetic features.
 
-- [Phonetic Word Similarity](#phonetic-word-similarity)
+- Table of content
   - [Preparing dataset and environment](#preparing-dataset-and-environment)
   - [Algorithm results](#algorithm-results)
   - [Train embedding](#train-embedding)
@@ -88,9 +88,9 @@ TSNE Plot for some Hindi words
 
 ![TSNE_ENGLISH](docs/img/06_tsne_hindi.png)
 
-Pun Dataset (see [docs/puns.md](docs/puns.md))
+Pun Dataset (see [docs/puns.md](docs/puns.md) for more details)
 
-![Density](docs/img/07_puns.png)
+![Density](docs/img/08_puns_not_same.png)
 
 ---
 
