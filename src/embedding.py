@@ -1,5 +1,13 @@
+"""
+Embedding
+==========
+
+Loads the vitz-1973-experiment dataset and generate embedding scores for them.
+"""
+
 import os
 import sys
+from argparse import ArgumentParser, RawTextHelpFormatter
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import normalize
@@ -41,24 +49,30 @@ class Dictionary:
         # return [self.words[x] for x in np.argsort(-dots)[:n]]
 
 
-def compare(word, dictionary):
-    filedir = os.path.join(os.path.dirname(__file__), '..', 'res')
-    filepath = os.path.join(filedir, f'vitz-1973-experiment-{word}.csv')
+def compare(word, dictionary, res_dir):
+    filepath = os.path.join(res_dir, f'vitz-1973-experiment-{word}.csv')
     df = pd.read_csv(filepath)
-    df['embedding'] = df.apply(
+    df['score'] = df.apply(
         lambda row: dictionary.score(row['word'], word), axis=1)
-    obtained = df['obtained'].to_numpy()
-    actual = df['embedding'].to_numpy()
-    return np.corrcoef(obtained, actual)[0, 1]
+    df['actual'] = word
+    return df[['actual', 'word', 'score']]
 
-def main():
-    dictionary = Dictionary('simvecs')
-    rows = []
-    for word in ['sit', 'plant', 'wonder', 'relation']:
-        rows.append([word, compare(word, dictionary)])
-    filedir = os.path.join(os.path.dirname(__file__), '..', 'res')
-    filepath = os.path.join(filedir, f'embedding_score.csv')
-    pd.DataFrame(rows, columns=['word', 'score']).to_csv(filepath, index=False)
+def main(args):
+    dictionary = Dictionary(args.input, encoding=args.encoding)
+    words = ['sit', 'plant', 'wonder', 'relation']
+    df =  pd.concat([compare(w, dictionary, args.res) for w in words], ignore_index=True)
+    df.to_csv(args.output, index=False)
+
+
+def _get_args():
+    parser = ArgumentParser(
+        os.path.basename(__file__), description=__doc__, formatter_class=RawTextHelpFormatter)
+    parser.add_argument("input", type=str, help='embedding file path')
+    parser.add_argument("output", type=str, help='output score file path')
+    parser.add_argument("-e", "--encoding", default='latin1', type=str, help='File encoding (default: latin1)')
+    res_dir = os.path.join(os.path.dirname(__file__), '..', 'res')
+    parser.add_argument("-r", "--res", default=res_dir, type=str, help=f'Resourse directory (default: {res_dir})')
+    return parser.parse_args()
 
 if __name__ == '__main__':
-    main()
+    main(_get_args())

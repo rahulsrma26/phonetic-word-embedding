@@ -65,7 +65,13 @@ Comparision between [Vitz and Winkler (1973)](https://www.researchgate.net/publi
 
 ![03](docs/img/03_compare.png)
 
-^ The Parrish's Embeddings (PSSVec) results are generated from the author's provided git [code](https://github.com/aparrish/phonetic-similarity-vectors) using `numpy.seed(0)`.
+^ The Parrish's Embeddings (PSSVec) results are generated from the author's provided git [code](https://github.com/aparrish/phonetic-similarity-vectors) using `numpy.seed(0)` in `generate.py`. We can not use author provided pretrained vectors because the dictionary used by them misses a word `BELATION` used in the `RELATION` dataset by [Vitz and Winkler (1973)](https://www.researchgate.net/publication/232418589_Predicting_the_Judged_Similarity_of_Sound_of_English_words).
+
+The similarity vectors used by us for calculating PSSVec can be downloaded using
+
+```
+wget -O data/cmudict-0.7b-simvecs https://drive.google.com/uc?export=download&id=1gCvwI8ldxGM52vCoN70wUKmJfFMdapNl
+```
 
 ---
 
@@ -73,6 +79,15 @@ Comparision between [Vitz and Winkler (1973)](https://www.researchgate.net/publi
 
 * [English Embedding](embedding_english/)
 * [Hindi Embedding](embedding_hindi/)
+
+Embedding scores can be re-generated using [src/embedding.py](src/embedding.py) by providing the learned embedding file and the output file.
+
+```
+python src/embedding.py data/cmudict-0.7b-simvecs res/PSSVec_results.csv
+python src/embedding.py embedding_english/simvecs res/embedding_score.csv
+```
+
+^ These files are used to generate scores in the result section using [results_method.ipynb](../src/results_method.ipynb).
 
 ---
 

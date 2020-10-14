@@ -17,9 +17,17 @@ class Experiment:
 
 
     def get_dataset(self):
-        self.dataset = pd.concat([self.load_dataset(w) for w in self.words], ignore_index=True)
+        df = pd.concat([self.load_dataset(w) for w in self.words], ignore_index=True)
         # change the scale of Vitz score from 0-1 to 1-0
-        self.dataset['vw_predicted'] = 1 - self.dataset['vw_predicted']
+        df['vw_predicted'] = 1 - df['vw_predicted']
+        def search(df, actual, word):
+            func = lambda d: (d['actual'] == actual) & (d['word'] == word)
+            return df.loc[func, ['score']].values[0][0]
+        df['PSSVec'] = df.apply(
+            lambda row: search(self.pssvec, row['actual'], row['word']), axis=1)
+        df['Ours'] = df.apply(
+            lambda row: search(self.embed, row['actual'], row['word']), axis=1)
+        self.dataset = df
         return self.dataset
 
 
@@ -66,20 +74,14 @@ class Experiment:
         columns['avg'] = avg / len(words)
         return pd.DataFrame(columns, index=indices)
 
-    def similarity_scores(self, methods, words):
-        df, columns = self.dataset, {}
-        for method in methods:
-            scores = []
-            if method == 'PSSVec':
-                ps = self.pssvec
-                scores = [ps.loc[ps['word'] == w, 'score'].tolist()[0] for w in words]
-            elif method == 'Ours':
-                ps = self.embed
-                scores = [ps.loc[ps['word'] == w, 'score'].tolist()[0] for w in words]
-            else:
-                for word in words:
-                    obtained = df[df['actual'] == word]['obtained'].to_numpy()
-                    vw_predicted = df[df['actual'] == word][method].to_numpy()
-                    scores.append(np.corrcoef(obtained, vw_predicted)[0, 1])
-            columns[method] = scores
-        return pd.DataFrame(columns, index=words)
+
+def main():
+    exp = Experiment(
+        mapping='mapping_english.txt',
+        dictionary='cmudict-0.7b-with-vitz-nonce',
+        encoding='latin1',
+        words=['sit', 'plant', 'wonder', 'relation'])
+    print(exp.get_dataset())
+
+if __name__ == "__main__":
+    main()
