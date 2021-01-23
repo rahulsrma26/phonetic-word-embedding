@@ -2,7 +2,7 @@
 
 ## Background
 
-A pun is a joke exploiting the different possible meanings of a word or the fact that there are words that sound alike but have different meanings. The first category where a joke exploiting the different possible meanings of a word is called `Homographic pun` and the second one that exploits the similar sounding words is called `Heterographic pun`.
+A pun is a form of wordplay which exploits the different possible meanings of a word or the fact that there are words that sound alike but have different meanings, for an intended humorous or rhetorical effect. The first category where a pun exploiting the different possible meanings of a word is called `Homographic pun` and the second one that exploits the similar sounding words is called `Heterographic pun`.
 
 An example of a Heterographic pun is:
 
