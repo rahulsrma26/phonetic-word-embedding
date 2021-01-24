@@ -12,7 +12,7 @@ Here the word `syncing` is similar sounding to the word `sinking`.
 
 ## Dataset
 
-We have used [SemEval-2017 Task 7 (Detection and Interpretation of English Puns)](http://alt.qcri.org/semeval2017/task7/) dataset. Which consists of three subtasks. The 3rd subtask dataset contains word pairs for 1098 hetrographics puns (data/test/subtask3-heterographic-test.gold). These are the pairs like `syncing` and `sinking` i.e. what is present and what it is representing. For a hetrographics pun to work these words should be similar sounding. So, we have taken all the word pairs that are present in [CMU Dictionary](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and removed all the duplicate pairs. This gives us 778 word pairs present in [heterographic_pun_words.txt](../res/heterographic_pun_words.txt).
+We have used [SemEval-2017 Task 7 (Detection and Interpretation of English Puns)](http://alt.qcri.org/semeval2017/task7/) dataset. Which consists of three subtasks. The 3rd subtask dataset contains word pairs for 1098 hetrographic puns (data/test/subtask3-heterographic-test.gold). That contains word-pairs like `syncing` and `sinking` i.e. what is present and what it is representing. For a hetrographic pun to work these words should be similar sounding. So, we have taken all the word pairs that are present in [CMU Dictionary](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and removed all the duplicate pairs. This gives us 778 word pairs present in [heterographic_pun_words.txt](../res/heterographic_pun_words.txt).
 
 ## Results
 
