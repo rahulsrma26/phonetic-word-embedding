@@ -32,7 +32,7 @@ If we remove all the homophone pairs then we are left with 583 pairs.
 
 ![Density2](img/08_puns_not_same.png)
 
-As we can see our destribution more closely resembles gaussian with tighter curver and better mean.
+As we can see our distribution more closely resembles gaussian with tighter curve and better mean.
 
 These are some of the scores sorted by the diff (diff = Ours - PSSVec).
 
