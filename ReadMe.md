@@ -55,15 +55,15 @@ python src/preprocess/vocab2dict.py res/hindi_phones.csv data/hindi_lm_large.voc
 
 [results_method.ipynb](src/results_method.ipynb) contains results for the algorithm. The result includes:
 
-Comparision between unigram, bigram and bigram with penalty.
-![01](docs/img/01_unigram_vs_bigram.png)
+Comparision between unigram, bigram, bigram with penalty and bigram with penalty & vowel weight.
+![01](docs/img/01_methods.png)
 
 How we obtained the penalty of 2.5.
 ![02](docs/img/02_penalty.png)
 
 Comparision between [Vitz and Winkler (1973)](https://www.researchgate.net/publication/232418589_Predicting_the_Judged_Similarity_of_Sound_of_English_words), [Parrish's Embeddings (2017)](https://aaai.org/ocs/index.php/AIIDE/AIIDE17/paper/view/15879), and our methods (with and without vowel weights).
 
-![03](docs/img/03_compare.png)
+![03](docs/img/03_comparison.png)
 
 ^ The Parrish's Embeddings (PSSVec) results are generated from the author's provided git [code](https://github.com/aparrish/phonetic-similarity-vectors) using `numpy.seed(0)` in `generate.py`. We can not use author provided pretrained vectors because the dictionary used by them misses a word `BELATION` used in the `RELATION` dataset by [Vitz and Winkler (1973)](https://www.researchgate.net/publication/232418589_Predicting_the_Judged_Similarity_of_Sound_of_English_words).
 
