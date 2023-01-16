@@ -2,6 +2,8 @@
 
 A novel method to compare the phonetic similarity between words based on phonetic features.
 
+Our paper: [Phonetic Word Embeddings](https://arxiv.org/abs/2109.14796)
+
 - Table of content
   - [Preparing dataset and environment](#preparing-dataset-and-environment)
   - [Algorithm results](#algorithm-results)
@@ -77,8 +79,8 @@ wget -O data/cmudict-0.7b-simvecs https://drive.google.com/uc?export=download&id
 
 ## Train embedding
 
-* [English Embedding](embedding_english/)
-* [Hindi Embedding](embedding_hindi/)
+- [English Embedding](embedding_english/)
+- [Hindi Embedding](embedding_hindi/)
 
 Embedding scores can be re-generated using [src/embedding.py](src/embedding.py) by providing the learned embedding file and the output file.
 
@@ -154,4 +156,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
+- Hat tip to anyone whose code was used
